@@ -27,14 +27,14 @@
         </figcaption>
     </figure>
 
-    <form method="post" class="container">
+    <form method="post" action="/process" class="container" name="Modelform">
 
         <!-- Selectbox Manufacturer -->
         <div class="my-3">
             <h1 class=".fs-5">Enter Manufacturer: </h1>
-            <select class="form-select inp-fld" id="compval" name="manu" onchange="LoadModel(this.id,'CarModel')">
+            <select class="form-select inp-fld" id="manu" name="manu">
                 {% for comp in manu %}
-                <option value="{{comp}}" id="manufacturers">{{comp}}</option>
+                <option value="{{comp}}" id="manufacturers" name="manufacturers">{{comp}}</option>
                 {% endfor %} 
             </select>
         </div>
@@ -42,34 +42,35 @@
         <!-- Selectbox Model  -->
         <div class="my-3">
             <h1 class=".fs-5">Enter Model: </h1>
-            <select class="form-select inp-fld" id="CarModel">
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <select class="form-select inp-fld" id="CarModel"name="CarModel">
+                {% for comp in model %}
+                <option value="{{comp}}" id="model" name="model">{{comp}}</option>
+                {% endfor %}
             </select>
         </div>
 
         <!-- Number Inp Year -->
         <div class="my-3">
             <h1 class=".fs-5">Enter Year of Purchase: </h1>
-            <input type="number" id="disabledTextInput" class="form-control inp-fld">
+            <input type="number" id="year" name= "year" class="form-control inp-fld">
         </div>
         <!-- Number Inp Mileage -->
         <div class="my-3">
             <h1 class=".fs-5">Enter Mileage: </h1>
-            <input type="number" id="disabledTextInput" class="form-control inp-fld">
+            <input type="number" id="mileage" name="mileage" class="form-control inp-fld">
         </div>
 
+        <!-- Submit button  -->
         <div class="d-grid gap-2 col-1 mx-auto mt-4">
-            <button class="btn btn-success btn-lg" type="button">Predict</button>
+            <button class="btn btn-success btn-lg" id="submit" onclick="sendData()" type="submit">Predict</button>
+          </div>
+
+
+          <div class="row">
+              <div class="col-12" class="text-center"></div>
+              <h3><span id="prediction"></span></h3>
           </div>
     </form>
-<script>
-    function LoadModel(id,carModel_id){
-    const manufacturers = document.getElementById(id).value;
-    const CM = document.getElementById(carModel_id).value;
-}
-</script>
 </body>
 
 </html>
